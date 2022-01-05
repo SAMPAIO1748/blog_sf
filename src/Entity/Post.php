@@ -27,6 +27,11 @@ class Post
      */
     private $content;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Tag::class, inversedBy="posts")
+     */
+    private $tag;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Post
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getTag(): ?Tag
+    {
+        return $this->tag;
+    }
+
+    public function setTag(?Tag $tag): self
+    {
+        $this->tag = $tag;
 
         return $this;
     }
