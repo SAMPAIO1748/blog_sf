@@ -11,5 +11,8 @@
 		<h3>
 			{{tag.description}}
 		</h3>
+		{% for post in tag.posts %}
+			<h4>{{ post.title }}</h4>
+		{% endfor %}
 	</body>
 </html>
