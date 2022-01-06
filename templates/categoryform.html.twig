@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<body>
+		{{ form_start(categoryForm) }}
+
+		{{ form_label(categoryForm.name, 'Nom de la catégorie : ', {'label_attr' : { 'class' : 'label' } } ) }}
+		{{ form_widget(categoryForm.name, {'attr' : {'placeholder' : 'Nom de la catégorie', 'class' : 'cat-name'} } ) }}
+
+		{{ form_label(categoryForm.color, 'Description de la catégorie : ', {'label_attr' : { 'class' : 'label' } } ) }}
+		{{ form_widget(categoryForm.color, {'attr' : {'placeholder' : 'Description de la catégorie', 'class' : 'cat-color'} } ) }}
+
+		{{ form_widget(categoryForm.enregistrer, { 'attr' : {'class' : 'btn'} } ) }}
+
+		{{ form_end(categoryForm) }}
+	</body>
+</html>

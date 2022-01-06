@@ -8,6 +8,10 @@
 	</head>
 	<body>
 
+		{% for message in app.flashes('notice') %}
+			<h4>{{ message }}</h4>
+		{% endfor %}
+
 		{% for category in categories %}
 			<h2>
 				{{category.name}}
