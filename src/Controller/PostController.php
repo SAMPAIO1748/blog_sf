@@ -108,6 +108,7 @@ class PostController extends AbstractController
 
         $post = $postRepository->find($id);
 
+        // remove supprime le post et flush enregistre dans la base de données
         $entityManagerInterface->remove($post);
         $entityManagerInterface->flush();
 
