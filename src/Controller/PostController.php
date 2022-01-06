@@ -61,6 +61,17 @@ class PostController extends AbstractController
         // Utilisation de request pour récupérer les informations rentrées dans le formualire
         $postForm->handleRequest($request);
 
+        if ($postForm->isSubmitted() && $postForm->isValid()) {
+
+            // persist prépare l'enregistrement dans la bdd
+            // analyse le changement à faire 
+            $entityManagerInterface->persist($post);
+            // flush enregistre dans la bdd
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('post_list');
+        }
+
         return $this->render('postform.html.twig', ['postForm' => $postForm->createView()]);
     }
 }
