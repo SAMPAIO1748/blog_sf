@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<body>
+		{{ form_start(tagForm) }}
+
+		{{ form_label(tagForm.name, 'Nom du tag : ', {'label_attr' : { 'class' : 'label' } } ) }}
+		{{ form_widget(tagForm.name, {'attr' : {'placeholder' : 'Nom du tag', 'class' : 'tag-name'} } ) }}
+
+		{{ form_label(tagForm.description, 'Description du tag : ', {'label_attr' : { 'class' : 'label' } } ) }}
+		{{ form_widget(tagForm.description, {'attr' : {'placeholder' : 'Description du tag', 'class' : 'tag-description'} } ) }}
+
+		{{ form_widget(tagForm.enregistrer, { 'attr' : {'class' : 'btn'} } ) }}
+
+		{{ form_end(tagForm) }}
+	</body>
+</html>

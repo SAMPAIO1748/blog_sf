@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Form\TagType;
 use App\Repository\TagRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TagController extends AbstractController
 {
@@ -37,5 +40,31 @@ class TagController extends AbstractController
         $tag = $tagRepository->find($id);
 
         return $this->render("tag.html.twig", ['tag' => $tag]);
+    }
+
+    /**
+     * @Route("update/tag/{id}", name="update_tag")
+     */
+    public function updateTag(
+        $id,
+        TagRepository $tagRepository,
+        Request $request,
+        EntityManagerInterface $entityManagerInterface
+    ) {
+
+        $tag = $tagRepository->find($id);
+
+        $tagForm = $this->createForm(TagType::class, $tag);
+
+        $tagForm->handleRequest($request);
+
+        if ($tagForm->isSubmitted() && $tagForm->isValid()) {
+            $entityManagerInterface->persist($tag);
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('tag_list');
+        }
+
+        return $this->render("tagform.html.twig", ['tagForm' => $tagForm->createView()]);
     }
 }
