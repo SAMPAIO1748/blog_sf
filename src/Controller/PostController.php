@@ -112,6 +112,11 @@ class PostController extends AbstractController
         $entityManagerInterface->remove($post);
         $entityManagerInterface->flush();
 
+        $this->addFlash(
+            'notice',
+            'Votre post a été supprimé'
+        );
+
         return $this->redirectToRoute("post_list");
     }
 }
