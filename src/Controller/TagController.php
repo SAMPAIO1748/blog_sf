@@ -63,6 +63,11 @@ class TagController extends AbstractController
             $entityManagerInterface->persist($tag);
             $entityManagerInterface->flush();
 
+            $this->addFlash(
+                'notice',
+                'Le tag a été modifié'
+            );
+
             return $this->redirectToRoute('tag_list');
         }
 
@@ -84,6 +89,11 @@ class TagController extends AbstractController
             $entityManagerInterface->persist($tag);
             $entityManagerInterface->flush();
 
+            $this->addFlash(
+                'notice',
+                'Un tag a été créé'
+            );
+
             return $this->redirectToRoute("tag_list");
         }
 
@@ -100,6 +110,11 @@ class TagController extends AbstractController
         $entityManagerInterface->remove($tag);
 
         $entityManagerInterface->flush();
+
+        $this->addFlash(
+            'notice',
+            'Le tag a été supprimé'
+        );
 
         return $this->redirectToRoute("tag_list");
     }

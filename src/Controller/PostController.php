@@ -70,6 +70,11 @@ class PostController extends AbstractController
             // flush enregistre dans la bdd
             $entityManagerInterface->flush();
 
+            $this->addFlash(
+                'notice',
+                'Le post a été modifié'
+            );
+
             return $this->redirectToRoute('post_list');
         }
 
@@ -90,6 +95,11 @@ class PostController extends AbstractController
         if ($postForm->isSubmitted() && $postForm->isValid()) {
             $entityManagerInterface->persist($post);
             $entityManagerInterface->flush();
+
+            $this->addFlash(
+                'notice',
+                'Un post a été créé'
+            );
 
             return $this->redirectToRoute('post_list');
         }

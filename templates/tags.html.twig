@@ -7,6 +7,11 @@
 		<title>Document</title>
 	</head>
 	<body>
+
+		{% for message in app.flashes('notice') %}
+			<h4>{{ message }}</h4>
+		{% endfor %}
+
 		{% for tag in tags %}
 			<h2>{{ tag.name }}</h2>
 			<h3>{{ tag.description }}</h3>
