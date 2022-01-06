@@ -19,6 +19,12 @@
 		{{ form_label(postForm.content, 'Contenu du post', {'label_attr' : {'class' : 'label'} } ) }}
 		{{ form_widget(postForm.content, {'attr' : {'placeholder' : 'Contenu du post', 'class' : 'content' } } ) }}
 
+		{{ form_label(postForm.tag, 'Tag du post', {'label_attr' : {'class' : 'label'} } ) }}
+		{{ form_widget(postForm.tag, {'attr' : {'class' : 'tag-post' } } ) }}
+
+		{{ form_label(postForm.category, 'Categorie du post', {'label_attr' : {'class' : 'label'} } ) }}
+		{{ form_widget(postForm.category, {'attr' : {'class' : 'category-post' } } ) }}
+
 		{{ form_widget(postForm.enregistrer)}}
 
 		{{form_end(postForm)}}
