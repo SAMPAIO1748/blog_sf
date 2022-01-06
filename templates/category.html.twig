@@ -7,13 +7,17 @@
 		<title>Document</title>
 	</head>
 	<body>
-
-		<h1>{{ post.title }}</h1>
-		<p>{{ post.content }}</p>
-		<h2>{{ post.tag.name }}</h2>
 		<h2>
-			{{post.category.name}}
+			{{category.name}}
 		</h2>
+		<h3>
+			{{category.color}}
+		</h3>
 
+		{% for post in category.posts %}
+			<h3>
+				{{post.title}}
+			</h3>
+		{% endfor %}
 	</body>
 </html>

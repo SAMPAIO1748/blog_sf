@@ -8,12 +8,15 @@
 	</head>
 	<body>
 
-		<h1>{{ post.title }}</h1>
-		<p>{{ post.content }}</p>
-		<h2>{{ post.tag.name }}</h2>
-		<h2>
-			{{post.category.name}}
-		</h2>
+		{% for category in categories %}
+			<h2>
+				{{category.name}}
+			</h2>
+			<h3>
+				{{category.color}}
+			</h3>
+			<hr>
+		{% endfor %}
 
 	</body>
 </html>
