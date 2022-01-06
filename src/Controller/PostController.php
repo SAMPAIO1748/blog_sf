@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Form\PostType;
 use App\Repository\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -37,5 +40,27 @@ class PostController extends AbstractController
         $post = $postRepository->find($id); // find() permet de récupérer un poste grâce à son id.
 
         return $this->render('post.html.twig', ['post' => $post]);
+    }
+
+    /**
+     * @Route("update/post/{id}", name="post_update")
+     */
+    public function postUpdate(
+        $id,
+        PostRepository $postRepository,
+        Request $request,
+        EntityManagerInterface $entityManagerInterface
+    ) {
+        $post = $postRepository->find($id);
+
+        // Création du formulaire
+        $postForm = $this->createForm(PostType::class, $post);
+
+        // Utilisation de handleRequest pour demander au formulaire de traiter les informations
+        // rentrées dans le formulaire
+        // Utilisation de request pour récupérer les informations rentrées dans le formualire
+        $postForm->handleRequest($request);
+
+        return $this->render('postform.html.twig', ['postForm' => $postForm->createView()]);
     }
 }

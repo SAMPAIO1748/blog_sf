@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+	</head>
+	<body>
+		{#form(postForm)#}
+
+		{{form_start(postForm)}}
+
+		{# création d'un champs #}
+		{{ form_label(postForm.title, 'Titre du post', {'label_attr' : {'class' : 'label'} } ) }}
+		{{ form_widget(postForm.title, { 'attr' : {'placeholder' : 'Titre du post', 'class' : 'title' } } )}}
+
+		{{ form_label(postForm.content, 'Contenu du post', {'label_attr' : {'class' : 'label'} } ) }}
+		{{ form_widget(postForm.content, {'attr' : {'placeholder' : 'Contenu du post', 'class' : 'content' } } ) }}
+
+		{{ form_widget(postForm.enregistrer)}}
+
+		{{form_end(postForm)}}
+	</body>
+</html></body></html>
