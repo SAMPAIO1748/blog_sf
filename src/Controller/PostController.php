@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -67,6 +68,27 @@ class PostController extends AbstractController
             // analyse le changement à faire 
             $entityManagerInterface->persist($post);
             // flush enregistre dans la bdd
+            $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('post_list');
+        }
+
+        return $this->render('postform.html.twig', ['postForm' => $postForm->createView()]);
+    }
+
+    /**
+     * @Route("create/post/", name="post_create")
+     */
+    public function postCreate(Request $request, EntityManagerInterface $entityManagerInterface)
+    {
+        $post = new Post();
+
+        $postForm = $this->createForm(PostType::class, $post);
+
+        $postForm->handleRequest($request);
+
+        if ($postForm->isSubmitted() && $postForm->isValid()) {
+            $entityManagerInterface->persist($post);
             $entityManagerInterface->flush();
 
             return $this->redirectToRoute('post_list');
